@@ -1,0 +1,68 @@
+.deposit-page { padding-bottom: 60px; }
+.page-heading { font-size: 1.8rem; font-weight: 900; margin-bottom: 6px; }
+.page-sub { color: var(--text-secondary); margin-bottom: 28px; font-size: 1rem; }
+
+.method-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.method-card {
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  position: relative;
+}
+.method-card.selected { border-color: var(--accent-red); background: rgba(255,51,51,0.05); }
+.method-icon { font-size: 2rem; }
+.method-name { font-weight: 700; font-size: 1rem; }
+.method-desc { font-size: 0.8rem; color: var(--text-secondary); }
+.method-check {
+  position: absolute; top: 10px; right: 12px;
+  color: var(--accent-red); font-weight: 900; font-size: 1.1rem;
+}
+
+.deposit-form-card { margin-bottom: 20px; }
+.field-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.quick-amount-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.quick-amount-btn:hover, .quick-amount-btn.active {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(245,166,35,0.08);
+}
+
+.amount-note {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--accent-green);
+}
+
+.deposit-notes {
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.deposit-notes p { display: flex; align-items: center; gap: 8px; }

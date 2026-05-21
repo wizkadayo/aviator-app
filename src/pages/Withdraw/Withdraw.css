@@ -1,0 +1,72 @@
+.withdraw-page { padding-bottom: 60px; }
+.steps-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.step-item {
+  flex: 1;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+  border-right: 1px solid var(--border);
+}
+.step-item:last-child { border-right: none; }
+.step-item.active { color: var(--text-primary); background: rgba(255,51,51,0.05); }
+.step-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.step-item.active .step-dot {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: white;
+}
+.withdraw-step { display: flex; flex-direction: column; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; position: relative; }
+.form-group label {
+  font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--text-secondary);
+  font-weight: 600;
+}
+.max-btn {
+  position: absolute; right: 12px; top: 38px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--accent-gold);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Orbitron', monospace;
+}
+.verified-account {
+  background: rgba(0,230,118,0.05);
+  border: 1px solid rgba(0,230,118,0.2);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.verified-badge {
+  color: var(--accent-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.verified-name { font-size: 1.1rem; font-weight: 700; }
+.verified-info { color: var(--text-secondary); font-size: 0.85rem; }
