@@ -35,7 +35,7 @@ export default function Register() {
           <div className="form-row">
             <div className="form-group">
               <label>First Name</label>
-              <input placeholder="John" value={form.firstName} onChange={e => set('firstName', e.target.value)} required />
+              <input placeholder="Bright" value={form.firstName} onChange={e => set('firstName', e.target.value)} required />
             </div>
             <div className="form-group">
               <label>Last Name</label>
