@@ -13,15 +13,18 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 1000));
-    // Simulate login — replace with real API call later
-    login({ name: 'Player', email: form.email, balance: 5000 });
+  e.preventDefault();
+  setLoading(true);
+  try {
+    await login(form.email, form.password);
     toast.success('Welcome back! 🚀');
     navigate('/play');
+  } catch (err) {
+    toast.error(err.message || 'Login failed');
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   return (
     <div className="auth-page page-wrapper">

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import '../Login/Login.css';
 
 export default function Register() {
+  const { register } = useAuth();
   const { login } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', password: '' });
@@ -15,14 +16,24 @@ export default function Register() {
   const set = (k, v) => setForm(f => ({...f, [k]: v}));
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    login({ name: `${form.firstName} ${form.lastName}`, email: form.email, phone: form.phone, balance: 5000 });
+  e.preventDefault();
+  setLoading(true);
+  try {
+    await register({
+      firstName: form.firstName,
+      lastName:  form.lastName,
+      email:     form.email,
+      phone:     form.phone,
+      password:  form.password,
+    });
     toast.success('Account created! Welcome bonus: ₦5,000 🎉');
     navigate('/play');
+  } catch (err) {
+    toast.error(err.message || 'Registration failed');
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   return (
     <div className="auth-page page-wrapper">
