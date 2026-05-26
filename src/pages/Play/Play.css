@@ -65,20 +65,18 @@
 .canvas-wrap {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 260px;
   background: radial-gradient(ellipse at 20% 80%, rgba(255,40,40,0.07) 0%, transparent 60%),
               #0e0e14;
   flex-shrink: 0;
   overflow: hidden;
 }
-
 .game-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
-
 .canvas-grid-lines {
   position: absolute;
   inset: 0;
@@ -104,7 +102,6 @@
   transform: rotate(-30deg);
   filter: drop-shadow(0 0 10px #ff4444);
 }
-
 @keyframes planeFly {
   from { transform: translateY(0px); }
   to   { transform: translateY(-4px); }
@@ -122,13 +119,12 @@
 }
 .live-mult {
   font-family: 'Orbitron', monospace;
-  font-size: clamp(3.2rem, 10vw, 5rem);
+  font-size: clamp(3rem, 10vw, 5rem);
   font-weight: 900;
   text-shadow: 0 0 40px currentColor;
   letter-spacing: -2px;
   transition: color 0.2s;
 }
-
 .waiting-display { text-align: center; }
 .wait-label {
   font-family: 'Orbitron', monospace;
@@ -144,7 +140,6 @@
   color: #fff;
   text-shadow: 0 0 30px rgba(255,255,255,0.3);
 }
-
 .crashed-display { text-align: center; }
 .flew-label {
   font-family: 'Orbitron', monospace;
@@ -161,7 +156,6 @@
   color: #ff3333;
   text-shadow: 0 0 40px #ff3333;
 }
-
 @keyframes blink {
   0%,100% { opacity: 1; }
   50%      { opacity: 0.3; }
@@ -200,16 +194,19 @@
 }
 .pop1 { top: 20px; left: 20px; }
 .pop2 { top: 20px; right: 20px; }
-
 @keyframes popIn {
   from { transform: scale(0.5); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
 }
 
-/* ── DUAL BET PANELS ── */
+/* ══════════════════════════════════
+   DUAL BET PANELS
+   Desktop: side by side
+   Mobile:  stacked vertically
+══════════════════════════════════ */
 .bet-panels {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;  /* desktop — side by side */
   gap: 0;
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -291,20 +288,19 @@
 .auto-input:focus { border-color: #f5a623; }
 .auto-x { color: #888; font-size: 0.8rem; }
 
-/* Stake row */
+/* ── STAKE ROW ── */
 .stake-row {
   display: flex;
   gap: 8px;
   align-items: stretch;
 }
-
 .stake-left {
   display: flex;
   flex-direction: column;
   gap: 6px;
   flex: 1;
+  min-width: 0;
 }
-
 .stake-controls {
   display: flex;
   align-items: center;
@@ -336,28 +332,21 @@
 }
 .sc-plus:hover { background: rgba(0,230,118,0.22); }
 
-.stake-input {
+.stake-display {
   flex: 1;
-  background: transparent;
-  border: none;
-  color: #fff;
   font-family: 'Orbitron', monospace;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 700;
+  color: #fff;
   text-align: center;
-  outline: none;
-  width: 0;
-  min-width: 0;
-  padding: 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-/* Hide number arrows */
-.stake-input::-webkit-outer-spin-button,
-.stake-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-.stake-input[type=number] { -moz-appearance: textfield; }
 
 .quick-row {
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 .qbtn {
   flex: 1;
@@ -365,16 +354,31 @@
   border: 1px solid rgba(255,255,255,0.08);
   color: #aaa;
   border-radius: 6px;
-  padding: 4px 2px;
-  font-size: 0.72rem;
+  padding: 4px 1px;
+  font-size: 0.65rem;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.15s;
+  white-space: nowrap;
 }
-.qbtn:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
+.qbtn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: rgba(255,255,255,0.2);
+}
+.qbtn-clear {
+  background: rgba(255,51,51,0.08);
+  border-color: rgba(255,51,51,0.15);
+  color: #ff5555;
+  flex: 0 0 24px;
+}
+.qbtn-clear:hover {
+  background: rgba(255,51,51,0.18);
+  border-color: rgba(255,51,51,0.3);
+}
 
-/* BIG BET BUTTON */
+/* ── BIG BET BUTTON ── */
 .big-bet-btn {
   background: linear-gradient(160deg, #4caf50, #2e7d32);
   border: none;
@@ -385,8 +389,9 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
-  min-width: 100px;
-  width: 44%;
+  min-width: 90px;
+  width: 42%;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -413,9 +418,9 @@
   background: linear-gradient(160deg, #1a1a2e, #2a2a40);
   box-shadow: none;
 }
-.co-top { font-size: 0.75rem; letter-spacing: 1px; opacity: 0.9; }
-.co-mid { font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 900; }
-.co-bot { font-size: 0.75rem; opacity: 0.85; }
+.co-top { font-size: 0.72rem; letter-spacing: 1px; opacity: 0.9; }
+.co-mid { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 900; }
+.co-bot { font-size: 0.7rem; opacity: 0.85; }
 
 @keyframes pulseOrange {
   0%,100% { box-shadow: 0 4px 18px rgba(255,152,0,0.4); }
@@ -428,7 +433,6 @@
   background: #0e0e14;
   margin-top: 4px;
 }
-
 .bets-tabs {
   display: flex;
   align-items: center;
@@ -453,7 +457,6 @@
   background: rgba(255,255,255,0.1);
   color: #fff;
 }
-
 .bets-summary {
   margin-left: auto;
   display: flex;
@@ -463,11 +466,18 @@
 }
 .bets-count { font-size: 0.75rem; color: #777; }
 .bc-won { color: #00e676; font-weight: 700; }
-.bets-total { font-family: 'Orbitron', monospace; font-size: 0.8rem; color: #00e676; font-weight: 700; }
-.bc-label { color: #555; font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; }
-
+.bets-total {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8rem;
+  color: #00e676;
+  font-weight: 700;
+}
+.bc-label {
+  color: #555;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+}
 .bets-table { padding: 0 6px; }
-
 .bets-thead {
   display: grid;
   grid-template-columns: 2fr 2fr 1.2fr 2fr;
@@ -479,7 +489,6 @@
   font-weight: 700;
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-
 .bets-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1.2fr 2fr;
@@ -489,11 +498,8 @@
   align-items: center;
   transition: background 0.15s;
 }
-.bets-row.won {
-  background: rgba(0,230,118,0.04);
-}
+.bets-row.won { background: rgba(0,230,118,0.04); }
 .bets-row:hover { background: rgba(255,255,255,0.025); }
-
 .br-player {
   display: flex;
   align-items: center;
@@ -513,7 +519,6 @@
 .br-bet { color: #ccc; font-weight: 600; }
 .br-mult { font-family: 'Orbitron', monospace; font-size: 0.78rem; font-weight: 700; }
 .br-win { font-weight: 700; }
-
 .provably-fair {
   text-align: center;
   padding: 14px;
@@ -521,14 +526,63 @@
   color: #444;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 480px) {
-  .canvas-wrap { height: 220px; }
-  .big-bet-btn { min-width: 85px; font-size: 0.85rem; }
+/* ══════════════════════════════════
+   MOBILE — stack panels vertically
+══════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* Stack the two bet panels vertically */
+  .bet-panels {
+    grid-template-columns: 1fr;
+  }
+
+  /* Add border between stacked panels */
+  .bet-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .bet-panel:last-child { border-bottom: none; }
+
+  /* Canvas shorter on mobile */
+  .canvas-wrap { height: 200px; }
+
+  /* Slightly smaller multiplier text */
+  .live-mult { font-size: 2.8rem; }
+  .wait-count { font-size: 3rem; }
+  .flew-mult  { font-size: 3rem; }
+
+  /* Cashout pops smaller */
+  .cashout-pop { font-size: 0.72rem; padding: 6px 10px; }
+  .pop1 { top: 10px; left: 10px; }
+  .pop2 { top: 10px; right: 10px; }
+
+  /* Bet button full width on mobile */
+  .stake-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .big-bet-btn {
+    width: 38%;
+    min-width: 80px;
+    font-size: 0.82rem;
+  }
+  .co-mid { font-size: 0.95rem; }
+
+  /* Live bets table compact */
   .bets-thead, .bets-row {
-    grid-template-columns: 1.8fr 1.8fr 1fr 1.8fr;
-    font-size: 0.75rem;
+    grid-template-columns: 1.6fr 1.6fr 1fr 1.6fr;
+    font-size: 0.72rem;
     padding: 6px 6px;
   }
-  .br-avatar { width: 22px; height: 22px; font-size: 0.6rem; }
+  .br-avatar { width: 20px; height: 20px; font-size: 0.6rem; }
+
+  /* History pills smaller */
+  .hist-pill { font-size: 0.62rem; padding: 2px 7px; }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .big-bet-btn { width: 35%; min-width: 70px; }
+  .qbtn { font-size: 0.6rem; }
+  .stake-display { font-size: 0.75rem; }
 }
