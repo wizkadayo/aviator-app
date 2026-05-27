@@ -6,50 +6,81 @@ import toast from 'react-hot-toast';
 import './Login.css';
 
 export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [show, setShow] = useState(false);
+  const { login }    = useAuth();
+  const navigate     = useNavigate();
+  const [form, setForm]     = useState({ email: '', password: '' });
+  const [show, setShow]     = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  try {
-    await login(form.email, form.password);
-    toast.success('Welcome back! 🚀');
-    navigate('/play');
-  } catch (err) {
-    toast.error(err.message || 'Login failed');
-  } finally {
-    setLoading(false);
-  }
-};
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await login(form.email, form.password);
+      toast.success('Welcome back! 🚀');
+      navigate('/play');
+    } catch (err) {
+      toast.error(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="auth-page page-wrapper">
       <div className="auth-card card">
-        <div className="auth-logo"><Plane size={32} className="auth-plane" /><span>AVIATOR PRO</span></div>
+        <div className="auth-logo">
+          <Plane size={32} className="auth-plane" />
+          <span>AVIATOR PRO</span>
+        </div>
         <h2 className="auth-title">Welcome Back</h2>
         <p className="auth-sub">Login to your account</p>
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="you@email.com" value={form.email}
-              onChange={e => setForm({...form, email: e.target.value})} required />
+            <input
+              type="email"
+              placeholder="you@email.com"
+              value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+              required
+            />
           </div>
           <div className="form-group">
             <label>Password</label>
             <div className="input-eye">
-              <input type={show ? 'text' : 'password'} placeholder="••••••••" value={form.password}
-                onChange={e => setForm({...form, password: e.target.value})} required />
+              <input
+                type={show ? 'text' : 'password'}
+                placeholder="••••••••"
+                value={form.password}
+                onChange={e => setForm({ ...form, password: e.target.value })}
+                required
+              />
               <button type="button" onClick={() => setShow(!show)} className="eye-btn">
-                {show ? <EyeOff size={16}/> : <Eye size={16}/>}
+                {show ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
+            {/* Forgot password link */}
+            <div style={{ textAlign: 'right', marginTop: 4 }}>
+              <Link
+                to="/forgot-password"
+                style={{
+                  fontSize: '0.82rem',
+                  color: 'var(--accent-red)',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                }}
+              >
+                Forgot password?
+              </Link>
+            </div>
           </div>
-          <button type="submit" className="btn-primary w-full" disabled={loading}>
+          <button
+            type="submit"
+            className="btn-primary w-full"
+            disabled={loading}
+          >
             {loading ? 'Logging in...' : 'Login →'}
           </button>
         </form>
